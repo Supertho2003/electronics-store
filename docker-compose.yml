@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  # DATABASE - MySQL
+  db:
+    image: mysql:8.0
+    container_name: mysql_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3306:3306"
+    networks:
+      - springmysql
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      retries: 5
+      start_period: 20s
+
+  # BACKEND - Spring Boot
+  backend:
+    build: ./shop_backend  # Đảm bảo đường dẫn đúng với thư mục chứa Dockerfile của backend
+    container_name: spring_boot_app
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/${MYSQL_DATABASE}?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
+      SPRING_APPLICATION_NAME: ${SPRING_APPLICATION_NAME}
+      SERVER_PORT: 8080
+
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_S3_REGION: ${AWS_S3_REGION}
+      AWS_S3_BUCKET_NAME: ${AWS_S3_BUCKET_NAME}
+
+      SPRING_MAIL_USERNAME: ${SPRING_MAIL_USERNAME}
+      SPRING_MAIL_PASSWORD: ${SPRING_MAIL_PASSWORD}
+
+      AUTH_TOKEN_JWT_SECRET: ${AUTH_TOKEN_JWT_SECRET}
+
+    networks:
+      - springmysql
+
+  # FRONTEND - React TypeScript + Tailwind CSS
+  frontend:
+    build: ./ecommerce-shop  # Đảm bảo đường dẫn đúng với thư mục chứa Dockerfile của frontend
+    container_name: react_frontend
+    environment:
+      - REACT_APP_API_URL=${REACT_APP_API_URL}
+    ports:
+      - "3000:80"
+    networks:
+      - springmysql
+
+networks:
+  springmysql:
+    driver: bridge
+
+volumes:
+  db_data:
