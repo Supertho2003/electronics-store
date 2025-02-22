@@ -25,7 +25,7 @@ services:
 
   # BACKEND - Spring Boot
   backend:
-    build: ./shop_backend  # Đảm bảo đường dẫn đúng với thư mục chứa Dockerfile của backend
+    build: ./shop_backend  
     container_name: spring_boot_app
     restart: always
     depends_on:
@@ -44,7 +44,7 @@ services:
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
       AWS_S3_REGION: ${AWS_S3_REGION}
       AWS_S3_BUCKET_NAME: ${AWS_S3_BUCKET_NAME}
-
+  
       SPRING_MAIL_USERNAME: ${SPRING_MAIL_USERNAME}
       SPRING_MAIL_PASSWORD: ${SPRING_MAIL_PASSWORD}
 
@@ -55,7 +55,7 @@ services:
 
   # FRONTEND - React TypeScript + Tailwind CSS
   frontend:
-    build: ./ecommerce-shop  # Đảm bảo đường dẫn đúng với thư mục chứa Dockerfile của frontend
+    build: ./ecommerce-shop  
     container_name: react_frontend
     environment:
       - REACT_APP_API_URL=${REACT_APP_API_URL}
