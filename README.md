@@ -24,8 +24,8 @@ package dev.com.shop_backend.security.config;
 
 public class VNPAYConfig {
     public static final String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html"; // Thay thế bằng URL thực tế
-    public static final String vnp_TmnCode = "BXGQ1TMK"; // Mã TMN của bạn
-    public static final String vnp_HashSecret = "RCRH8M15O1YZT4GFUSM1US0VUZUA1U53"; // Hash secret của bạn
+    public static final String vnp_TmnCode = "YOUR_TMN_CODE"; // Mã TMN của bạn
+    public static final String vnp_HashSecret = "YOUR_HASH_SECRET"; // Hash secret của bạn
 }
 
 ```
