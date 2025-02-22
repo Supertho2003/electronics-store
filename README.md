@@ -13,7 +13,7 @@ Hoặc có thể chạy câu lệnh với terminal ở thư mục gốc (Electro
   cp .env.example .env  
    ```
 
-# Cấu hình VNPay
+# Cấu hình VNPay //Có thể làm bước này sau khi chạy dự án cũng được nếu bạn chưa cần thực hiện thanh toán cho dự án
 
 Để cấu hình thông tin VNPay trong ứng dụng, bạn cần cập nhật file `VNPAYConfig.java` trong thư mục `./shop_back_end/src/main/java/dev/com/shop_backend/security/config/`.
 
