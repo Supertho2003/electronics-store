@@ -10,7 +10,7 @@ và thêm các thông tin cấu hình của bạn vào nhé.
 
 Hoặc có thể chạy câu lệnh với terminal ở thư mục gốc (Electronic-store) 
    ```bash
-  cp .env.example .env     //chạy dòng câu lệnh này
+  cp .env.example .env  
    ```
 
 2.Tiếp theo đến thư mục ./shop_back_end/src/main/java/dev/com/shop_backend/security/config/VNPAYConfig.java 
