@@ -13,11 +13,20 @@ Hoặc có thể chạy câu lệnh với terminal ở thư mục gốc (Electro
   cp .env.example .env  
    ```
 
-2.Tiếp theo đến thư mục ./shop_back_end/src/main/java/dev/com/shop_backend/security/config/VNPAYConfig.java 
-Bạn thêm các cấu hình thông tin VNPay của bạn
-public static final String vnp_PayUrl =   (vnp_PayUrl);
-public static final String vnp_TmnCode = (vnp_TmnCode);
-public static final String vnp_HashSecret = (vnp_HashSecret);
+# Cấu hình VNPay
+
+Để cấu hình thông tin VNPay trong ứng dụng, bạn cần cập nhật file `VNPAYConfig.java` trong thư mục `./shop_back_end/src/main/java/dev/com/shop_backend/security/config/`.
+
+Mở file `VNPAYConfig.java` và thêm các cấu hình sau:
+
+```java
+package dev.com.shop_backend.security.config;
+
+public class VNPAYConfig {
+    public static final String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html"; // Thay thế bằng URL thực tế
+    public static final String vnp_TmnCode = "BXGQ1TMK"; // Mã TMN của bạn
+    public static final String vnp_HashSecret = "RCRH8M15O1YZT4GFUSM1US0VUZUA1U53"; // Hash secret của bạn
+}
 
 
 🐳 Bước 2: **Cài đặt Docker và Docker Compose**
