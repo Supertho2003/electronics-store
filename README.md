@@ -37,6 +37,8 @@ public class VNPAYConfig {
 
 ```
 
+Link tài khoản để test thanh toán VNPAY: https://sandbox.vnpayment.vn/apis/vnpay-demo/
+
 
 🐳 Bước 2: **Cài đặt Docker và Docker Compose**
 
